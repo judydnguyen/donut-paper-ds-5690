@@ -86,8 +86,8 @@ Experiments with SynthDoG highlighted Donut’s ability to adapt to new domains 
 3. In which cases where Donut fails to extract accurate information (e.g., as shown in the DocVQA examples), what are the key reasons? Would additional fine-tuning with specialized datasets solve these issues?
 
 ## Demonstrating of using Donut
-- Implementation of fine-tuning Donut [here](donut-paper-cs-5690/Fine_tune_Donut_on_DocVQA.ipynb)
-- Implementation of using Donut [here](donut-paper-cs-5690/demo.ipynb)
+- Implementation of fine-tuning Donut [here](Fine_tune_Donut_on_DocVQA.ipynb)
+- Implementation of using Donut [here](demo.ipynb)
 
 ## Additional Resources
 
