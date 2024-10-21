@@ -2,7 +2,7 @@
     
 # Donut 🍩 : Document Understanding Transformer
 
-Official Implementation of Donut and SynthDoG | [Paper](https://arxiv.org/abs/2111.15664) | [Slide](https://docs.google.com/presentation/d/1gv3A7t4xpwwNdpxV_yeHzEOMy-exJCAz6AlAI9O5fS8/edit?usp=sharing) | [Poster](https://docs.google.com/presentation/d/1m1f8BbAm5vxPcqynn_MbFfmQAlHQIR5G72-hQUFS2sk/edit?usp=sharing)
+Donut and SynthDoG | [Paper](https://arxiv.org/abs/2111.15664) | [Poster](https://docs.google.com/presentation/d/1m1f8BbAm5vxPcqynn_MbFfmQAlHQIR5G72-hQUFS2sk/edit?usp=sharing) | [Code](https://github.com/clovaai/donut)
 
 </div>
 
@@ -40,49 +40,62 @@ Encoder-decoder structure: The encoder handles the document image, extracting fe
 Image-to-sequence modeling: Donut outputs sequences that represent text spans or key-value pairs directly from the input image.
 Multi-task learning: It can perform various tasks, such as classification, extraction, summarization, and parsing, by fine-tuning on corresponding datasets.
 
-### What is Donut technology? Introduce in detail
-
 ### In document understanding task that is not Donut-based, what is SOTA's approach to do it?
 The current SOTA approach for document understanding relies on OCR-based pipelines like LayoutLM and Tesseract. These pipelines follow these steps:
 
-Detect text regions using object detection.
-Recognize text within these regions via OCR.
-Classify or extract key information from recognized text.
+- Detect text regions using object detection.
+- Recognize text within these regions via OCR.
+- Classify or extract key information from recognized text.
+
 While effective, these systems are prone to cascading errors (OCR errors affect later steps) and struggle with multi-lingual content. Donut offers a simpler, unified solution by avoiding these intermediate steps altogether.
 
 ### Introduce Donut in detail
 Donut’s key features include:
-
-OCR-free document understanding: Bypasses the need for text recognition, working directly with images.
-Efficient pre-training with SynthDoG: Generates synthetic data to train the model, allowing it to perform well on unseen domains and low-resource languages.
-Supports multiple tasks: Can classify documents, extract key information, and summarize content with a single model.
+- OCR-free document understanding: Bypasses the need for text recognition, working directly with images.
+- Efficient pre-training with SynthDoG: Generates synthetic data to train the model, allowing it to perform well on unseen domains and low-resource languages.
+- Supports multiple tasks: Can classify documents, extract key information, and summarize content with a single model.
 Better generalization: Learns from synthetic multi-lingual data for improved robustness across languages and layouts.
 
-### Experiment
-The authors evaluated Donut on several standard VDU benchmarks, including RVL-CDIP (classification) and CORD (information extraction). The results showed:
+### Experiments
+- The authors evaluated Donut on several standard VDU benchmarks, including RVL-CDIP (classification) and CORD (information extraction). The authors conducted experiments with three down-stream tasks: (i) document classification, (ii) document parsing and (iii) document VQA.
 
+- The results showed:
 SOTA performance on classification and extraction tasks without using OCR engines.
 Faster inference compared to traditional pipelines, demonstrating its potential for real-time applications.
 Experiments with SynthDoG highlighted Donut’s ability to adapt to new domains without fine-tuning, confirming the generalizability of the pre-trained model.
 
 ## Critical Analysis
-Strengths:
 
-OCR-free design: Eliminates common bottlenecks in VDU pipelines.
-Simplicity: A unified end-to-end model for various tasks.
-Multi-lingual and domain-adaptive: Performs well across diverse datasets and languages.
-Limitations:
+**Strengths:**
 
-Dependency on high-quality training data: Pre-training with SynthDoG improves performance, but models may still require task-specific fine-tuning for niche applications.
-Handling extremely complex layouts: While Donut generalizes well, very complex forms may still present challenges.
+- OCR-free design: Eliminates common bottlenecks in VDU pipelines.
+- Simplicity: A unified end-to-end model for various tasks.
+- Multi-lingual and domain-adaptive: Performs well across diverse datasets and languages.
+
+**Limitations:**
+
+- *Training Data Bias:* Pre-training on synthetic data alone may not generalize well to real-world scenarios without further domain-specific fine-tuning (4 languages)
+- *High Pre-training Cost:* Training Donut with 11M images and large-scale synthetic data requires significant computational resources (e.g., 64 A100 GPUs), making it less accessible for smaller research teams or organizations with limited resources.
+- *Challenging for deployments:* Although Donut achieves faster inference than OCR-based systems, it still relies on heavy transformer architectures that might not be suitable for low-power or mobile devices.
+- *OOD performance concern:* Donut may struggle with tiny or low-contrast text in documents where OCR-based systems with image pre-processing steps could perform better. For example, under OOD layouts, font-sizes, languages, etc.
+
 
 ## Questions for Discussion
+1. What do you think will be the factors affecting the performance of training Donut?
+2. Why was the Swin Transformer selected as the visual encoder, and could alternative backbones (e.g., ViT) provide better results?
+3. In which cases where Donut fails to extract accurate information (e.g., as shown in the DocVQA examples), what are the key reasons? Would additional fine-tuning with specialized datasets solve these issues?
 
+## Demonstrating of using Donut
+- Implementation of fine-tuning Donut [here](donut-paper-cs-5690/Fine_tune_Donut_on_DocVQA.ipynb)
+- Implementation of using Donut [here](donut-paper-cs-5690/demo.ipynb)
 
-## Resources
+## Additional Resources
 
-- [[Link to the paper]()](#)
-- [[PapersWithCode link]()](#)
+- [Link to Paper](https://arxiv.org/abs/2111.15664)
+- [PapersWithCode link](https://paperswithcode.com/paper/donut-document-understanding-transformer)
+- [Fine-tuning Donut model tutorial](https://github.com/NielsRogge/Transformers-Tutorials/blob/master/Donut/DocVQA/Fine_tune_Donut_on_DocVQA.ipynb)
+- [Huggingface Tutorial](https://huggingface.co/naver-clova-ix/donut-base-finetuned-docvqa)
+- [Blog of A Comprehensive Analysis](https://ubiai.tools/fine-tuning-donut-model-on-docvqa-a-comprehensive-analysis/)
 
 
 ## Citation
