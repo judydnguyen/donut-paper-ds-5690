@@ -6,6 +6,7 @@ Donut and SynthDoG | [Paper](https://arxiv.org/abs/2111.15664) | [Poster](https:
 
 </div>
 
+
 ### Overview
 
 **Understanding document images** (e.g., invoices) is a core but challenging task since it requires complex functions such as reading text and a holistic understanding of the document. 
@@ -54,16 +55,17 @@ Although such OCR-based approaches have shown promising performance, they suffer
 - What for: Given the ${z}$, the textual decoder generates a token sequence $(y_i)^m_{i=1}$, where $y_i \in \mathbb{R}^v$ is an one-hot vector for the $i-th$ token, $v$ is the size of token vocabulary, and $m$ is a hyperparameter, respectively. 
 - How: 
     - Use BART [lewis-etal-2020-bart], a variant of the Transformer architecture. BART is pretrained on a diverse corpus, and publicly available multilingual BART weights are used for the decoder in Donut.
+    - BART is pretrained as a *denoising autoencoder*, meaning it learns to reconstruct original text from corrupted or masked inputs. This helps it handle *missing, incomplete, or noisy information*, which is common when working with document images and text extracted from complex layouts.
     - **Self-attention** to capture dependencies within the generated sequence.
     - **Cross-attention** to align the generated tokens with relevant parts of the encoder’s visual embeddings.
 
     - The cross-attention mechanism is computed as:
-  \[
+  $
   \operatorname{Attention}(Q, K, V) = \operatorname{softmax}\left(\frac{Q K^{\top}}{\sqrt{d_k}}\right) V
-  \]
+  $
   Where:
-  \(Q\) is the query from the decoder’s hidden state.
-  \(K\) and \(V\) are the visual embeddings from the encoder.
+  $Q$ is the query from the decoder’s hidden state.
+  $K$ and $V$ are the visual embeddings from the encoder.
 
 
 #### <span style="color:blue">Donut: Encoder-Decoder Forward Pass</span>
