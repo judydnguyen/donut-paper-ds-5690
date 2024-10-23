@@ -117,10 +117,10 @@ To this end, this work demonstrates that cross-modal attention between visual an
 - Implementation of fine-tuning Donut [here](Fine_tune_Donut_on_DocVQA.ipynb)
 - Implementation of using Donut [here](demo.ipynb)
 
-**!!! Well-formated Data**
+**<span style="color:purple">Well-formated Data</span>**
 ![](images/invoice-result.png)
 
-**!!! On OOD data**
+**<span style="color:purple">OOD Data</span>**
 ![](images/demo-spotify.png)
 
 ```{
