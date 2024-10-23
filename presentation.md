@@ -49,7 +49,7 @@ Although such OCR-based approaches have shown promising performance, they suffer
     <!-- - Use Swin Transformer [liu2021swin] because of the best performance. 
     - How does Swin Transformer work: splits the input image $x$ into non-overlapping patches. Swin Transformer blocks, consist of a shifted window-based multi-head self-attention module and a two-layer MLP, are applied to the patches. Then, patch merging layers are applied to the patch tokens at each stage. The output of the final Swin Transformer block ${z}$ is fed into the following textual decoder. -->
 
-![Wang, Yangtao, et al. "STMG: Swin transformer for multi-label image recognition with graph convolution network." Neural Computing and Applications 34.12 (2022): 10051-10063.](images/swintransformer.png)
+![Wang, Yangtao, et al. "STMG: Swin transformer for multi-label image recognition with graph convolution network." Neural Computing and Applications 34.12 (2022): 10051-10063.](images/swin-transformer.png)
 
 #### <span style="color:blue">Decoder: BART</span> 
 - What for: Given the ${z}$, the textual decoder generates a token sequence $(y_i)^m_{i=1}$, where $y_i \in \mathbb{R}^v$ is an one-hot vector for the $i-th$ token, $v$ is the size of token vocabulary, and $m$ is a hyperparameter, respectively. 
