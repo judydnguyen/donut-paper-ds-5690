@@ -60,9 +60,7 @@ Although such OCR-based approaches have shown promising performance, they suffer
     - **Cross-attention** to align the generated tokens with relevant parts of the encoder’s visual embeddings.
 
     - The cross-attention mechanism is computed as:
-  $
-  \operatorname{Attention}(Q, K, V) = \operatorname{softmax}\left(\frac{Q K^{\top}}{\sqrt{d_k}}\right) V
-  $
+  $\operatorname{Attention}(Q, K, V) = \operatorname{softmax}\left(\frac{Q K^{\top}}{\sqrt{d_k}}\right) V$
   Where:
   $Q$ is the query from the decoder’s hidden state.
   $K$ and $V$ are the visual embeddings from the encoder.
