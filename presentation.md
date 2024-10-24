@@ -20,7 +20,7 @@ Although such OCR-based approaches have shown promising performance, they suffer
 **<span style="color:blue">Donut: OCR-free VDU model </span>**: **Do**cume**n**t **un**derstanding **t**ransformer, a Transformer-based end-to-end model for Visual Document Understanding. 
 - 😍 End-to-end model, OCR-free
 - 😍 Donut is conceptually simple yet effective. 
-- 😍 Using Vision Transformer + Multi-modal Decoder
+- 😍 Using Vision Transformer Encoder + Denoising Decoder
 - 😍 Achieves state-of-the-art performances on various VDU tasks in terms of both speed and accuracy.
 <span style="color:gray">*Note:* Donut skips the traditional OCR step, which avoids potential errors in text recognition and allows for direct processing of complex, unstructured documents, such as receipts or invoices.</span>
 
