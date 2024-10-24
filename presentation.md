@@ -109,9 +109,7 @@ To this end, this work demonstrates that cross-modal attention between visual an
 
 
 ## Questions for Discussion
-% 1. What do you think will be the factors affecting the performance of training Donut?
-% 2. Why was the Swin Transformer selected as the visual encoder, and could alternative backbones (e.g., ViT) provide better results?
-% 3. In which cases where Donut fails to extract accurate information (e.g., as shown in the DocVQA examples), what are the key reasons? Would additional fine-tuning % with specialized datasets solve these issues?
+
 1. In what scenarios might Donut’s OCR-free approach encounter limitations, and how can they be mitigated?
     - When dealing with noisy or low-resolution documents, what preprocessing techniques could help?
     - Could incorporating multi-modal learning (e.g., combining image and text embeddings) improve results?
