@@ -83,6 +83,7 @@ Although such OCR-based approaches have shown promising performance, they suffer
     - Cross-attention: Every decoder layer performs **cross-attention** with the encoder’s output. 
 
 <span style="color:gray">*Note:* Cross-attention ensures that for each token being generated, the decoder aligns with the relevant visual patch embeddings. For example, while generating the token "invoice_date", the decoder focuses on the patch embeddings that correspond to the visual region containing the date in the document.</span>
+![](images/train-inference.png)
 
 ## Critical Analysis
 **Strengths:**
